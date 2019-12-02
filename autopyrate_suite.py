@@ -81,7 +81,6 @@ if option == '2':
     chosenfile = filelist[choosefile -1].rstrip('\n')
     print("Transfering",chosenfile)
     cmd = 'scp -r {0}@{1}:{2}{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
-    print(cmd)
     os.system(cmd)
 
     option = input("What else would you like to do?\n 1. torrent | 2. transfer | 3. delete | 4. exit\n")
