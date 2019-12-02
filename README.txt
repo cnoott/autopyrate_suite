@@ -4,12 +4,18 @@ Created by Liam Amadio
 
 See config.py for configurations to change the software to your needs
 
-autoPyrate_suite is a combination of 3 programs that work seperatly to torrent on a server to then transfer or delete those files.
+autoPyrate_suite is a combination of 3 programs that work seperatly to torrent on a server to then transfer to a client via SCP, or delete those files to free up space. I created it because my university blocks peer-to-peer traffic on their network (I wonder why) and I wanted a way I could download torrents. This script works by remotley accesing a server via ssh and running the neccesary programs. This program is by no means meant for piracy. Peer-to-peer networks have their advantages and it sucks that univesities have to block them. 
 
 Dependencies:
-python3
-paramiko python module
-a server with transmission-daemon and transmission-cli installed
+- python3
+- paramiko python module
+- a server with transmission-daemon and transmission-cli installed
+
+My server-side setup:
+raspberry pi 3
+    -running raspian
+    -port forwarded ssh
+    -transmission-daemon and transmission-cli for torrent client (also comes with a web interface)
 
 
 Individual_programs:
