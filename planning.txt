@@ -1,4 +1,3 @@
 Desires
 -------
-Make the entire program suite into one python file so that you dont have to log on the server every single time
-
+1. make it to where you dont have to restart program if given invalid input. 
