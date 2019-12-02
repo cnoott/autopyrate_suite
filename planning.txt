@@ -1,19 +1,4 @@
-Steps
-1. SSH into server
-2. Take magnet link as input
-3. Use transmission to start torrent
-4. Use the output of transmission to track download percentage
-5. Download the file using scp
-
-Goals
-Using a while loop to track the download of transmission and continue once its finished [ ]
-	(Store stdout.readlines() in a list and read it from there
-
-Tests
-Test if stdout.readlines() updates as it changes percentage (not likely)
-Test if mmaking a wihle loop of stdout.readlines() updates the download percentage
-
-Revalations
-Use ssh -X to run command localy using x11:
-it fucking worked(somehow[with erros])
+Desires
+-------
+Make the entire program suite into one python file so that you dont have to log on the server every single time
 

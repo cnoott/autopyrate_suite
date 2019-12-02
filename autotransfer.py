@@ -2,7 +2,6 @@
 #December 1 2019
 
 import os
-import sys
 import paramiko
 import getpass
 import config #config file
@@ -31,9 +30,9 @@ for i in files:
     x = x + 1
 
 choosefile = int(input("Choose file number to tansfer: "))
-chosenfile = filelist[choosefile -1]
+chosenfile = filelist[choosefile -1].rstrip('\n')
 print("Transfering",chosenfile)
-cmd = 'scp -r {0}@{1}:{2}/{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
+cmd = 'scp -r {0}@{1}:{2}{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
 print(cmd)
 os.system(cmd)
 ssh.close()
