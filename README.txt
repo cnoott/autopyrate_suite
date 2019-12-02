@@ -1,19 +1,20 @@
-INSTRUCTIONS FOR USE
-For autopyratev1.py
---------------------
-SYNOPSIS
-autoPyrate_v1 is designed to automatically send a file from my raspberry pi server to my macbook
+The autoPyrate suite
+====================
 
-1. login to transmission client interface by typing IP followed by a ':9091' which is the port number
-	'192.168.1.1:9091'
+See config.py for configurations to change the software to your needs
 
-2. Copy a torrent magnet file of your choice and paste it into the transmission client interface. Wait for it to finish downloading.
+1. autotorrent.py
+   - Takes a magnet link as input and starts a torrent dowload on the configured server
+   - Downloads to configured server directory
+   - Displays percentage of dowload and gives option whether to seed or not
 
-3. Copy the exact name of the downloaded file from the transmission client.
+2. autotransfer.py
+   - Lists files in configured directory and numbers them for later reference
+   - Takes a number as input and transfers the respective file to the configured local directory
+   - Uses the scp command localy
 
-4. Afterwards, run the autopirate_v1.py script and input the copied file name from the last step.
+3. autodelete.py
+   - Lists files in configured directory and numbers them for later refence
+   - Takes number as input and deletes the respective file from the configured directory
 
-5. The file transfer shall begin to dowload to the ~/Downloads by default.
-
-
-
+These programs will be combined to create autoPyrate_suite.py 
