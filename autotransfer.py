@@ -1,6 +1,7 @@
 #Written by Liam Amadio
 #December 1 2019
 
+import os
 import sys
 import paramiko
 import getpass
@@ -29,7 +30,10 @@ for i in files:
     print("{0}. {1}".format(x,i))
     x = x + 1
 
-choosefile = int(input("Choose file number to delete: "))
-print("Deleting",filelist[choosefile - 1])
-stdin,stdout,stderr = ssh.exec_command("sudo rm -r /opt/plexmedia/movies/{0}".format(filelist[choosefile-1]))
+choosefile = int(input("Choose file number to tansfer: "))
+chosenfile = filelist[choosefile -1]
+print("Transfering",chosenfile)
+cmd = 'scp -r {0}@{1}:{2}/{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
+print(cmd)
+os.system(cmd)
 ssh.close()

@@ -1,6 +1,8 @@
 INSTRUCTIONS FOR USE
-For autopiratev1.py
+For autopyratev1.py
 --------------------
+SYNOPSIS
+autoPyrate_v1 is designed to automatically send a file from my raspberry pi server to my macbook
 
 1. login to transmission client interface by typing IP followed by a ':9091' which is the port number
 	'192.168.1.1:9091'
