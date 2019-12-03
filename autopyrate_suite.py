@@ -32,6 +32,10 @@ while True:
 
 def options():
     option = input("Choose what you would like to do\n 1. torrent | 2. transfer | 3. delete | 4. exit\n")
+    #error prevention
+    if option not in ['1','2','3','4']:
+        print("Please choose a valid number")
+        options()
     if option == "1":
         def autotorrent():
             #getting the torrent
