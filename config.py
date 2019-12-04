@@ -12,6 +12,7 @@ login = 'pi'
 
 #transmission torrent client config
 #default login
-transmission_login = "transmission"
+transmission_login = "transmission" #This program assumes that your transmission password is the same as yourt server password
+
 #seed time
 seedtime = 600
