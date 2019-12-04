@@ -1,7 +1,7 @@
 Desires
 -------
-1. make it to where you dont have to restart program if given invalid input. 
-
+1. Make to where the user can select if transmission password is the same as server password
+(Should it be an option in the config?[probably])
 Goals for the future
 -------------------
 1. Create a search feature in which the user can search for a torrent from their favroite torrent websites
