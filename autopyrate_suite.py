@@ -29,7 +29,11 @@ while True:
         break
     except paramiko.AuthenticationException:
         print("Authentication failed")
-
+#checking config.py if transmission password is the same as server password
+if config.transmission_pass = False:
+    transpass = getpass.getpass(prompt="Enter transmission password: ")
+else:
+    transpass = password
 def options():
     option = input("Choose what you would like to do\n 1. torrent | 2. transfer | 3. delete | 4. exit\n")
     #error prevention
@@ -43,14 +47,14 @@ def options():
             #if blank input
             if magnet == "":
                 autotorrent()
-            torrent = "transmission-remote --auth {0}:{1} -a {2}".format(config.transmission_login,password,magnet)
+            torrent = "transmission-remote --auth {0}:{1} -a {2}".format(config.transmission_login,transpass,magnet)
             torrent = str(torrent)
             stdin,stdout,stderr = ssh.exec_command(torrent)
             torrentoutput = stdout.readlines()
             print("{0}!".format(torrentoutput[0][45:52]))
 
             #checking if torrent is done
-            listtorrent = 'transmission-remote --auth {0}:{1} -l'.format(config.transmission_login,password)
+            listtorrent = 'transmission-remote --auth {0}:{1} -l'.format(config.transmission_login,transpass)
             stdin,stdout,stderr = ssh.exec_command(listtorrent)
             status = stdout.readlines()
             #checks if download is done every 30 seconds
@@ -72,7 +76,7 @@ def options():
             if cancelseed == 'c':
                 seedtime = 0
             time.sleep(seedtime)
-            removetorrent = 'transmission-remote --auth {0}:{1} -t all -r'.format(config.transmission_login,password)
+            removetorrent = 'transmission-remote --auth {0}:{1} -t all -r'.format(config.transmission_login,transpass)
             stdin,stdout,stderr = ssh.exec_command(removetorrent)
             seedoutput = stdout.readlines()
             print("{0}!".format(seedoutput[0][45:52]))
