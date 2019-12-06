@@ -6,6 +6,7 @@ Desires
 Goals for the future
 -------------------
 1. Create a search feature in which the user can search for a torrent from their favroite torrent websites
-
-2. Make a version or option that doesn't rely on a server to do the torrenting
-:
+    a. Find a python module that take a url as input and returns the HTML (beautiful soup + requests) CHECK
+    b. Use the given html output and be able to search the site and retreve magnet links from the search results
+        -For thepiratebay.org, simply use the url thepiratebay.org/search/'search'
+    c. Parse the html of the given url and display name and seeders/leechers. Store magnet url in variable

@@ -9,7 +9,7 @@ import time
 import config #config file
 
 #splash text
-print("\nWelcome to autoPyrate v0.2\n---------------------")
+print("\nWelcome to autoPyrate v0.4\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")
@@ -30,7 +30,7 @@ while True:
     except paramiko.AuthenticationException:
         print("Authentication failed")
 #checking config.py if transmission password is the same as server password
-if config.transmission_pass = False:
+if config.transmission_pass == False:
     transpass = getpass.getpass(prompt="Enter transmission password: ")
 else:
     transpass = password
