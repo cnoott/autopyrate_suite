@@ -42,6 +42,43 @@ def options():
     if option not in ['1','2','3','4','5']:
         print("Please choose a valid number")
         options()
+#autotorrent function
+    def autotorrent(magnet):
+        #getting the torrent
+        torrent = "transmission-remote --auth {0}:{1} -a {2}".format(config.transmission_login,transpass,magnet)
+        torrent = str(torrent)
+        stdin,stdout,stderr = ssh.exec_command(torrent)
+        torrentoutput = stdout.readlines()
+        print("{0}!".format(torrentoutput[0][45:52]))
+
+        #checking if torrent is done
+        listtorrent = 'transmission-remote --auth {0}:{1} -l'.format(config.transmission_login,transpass)
+        stdin,stdout,stderr = ssh.exec_command(listtorrent)
+        status = stdout.readlines()
+        #checks if download is done every 30 seconds
+        starttime = time.time()
+        while True:
+            stdin,stdout,stderr = ssh.exec_command(listtorrent)
+            status = stdout.readlines()
+            status = status[1][7:10]
+            sys.stdout.write('\r Progress {0}%'.format(status))
+            if status == '100':
+                print("\nDownload complete!")
+                break
+            time.sleep(30.0 - ((time.time() -starttime) %30.0))
+
+        #deleting torrent file after seeding for configured minutes (default 10)
+        seedtime = config.seedtime
+        calculatedseedtime = "Transmission-remote will seed for",config.seedtime / 60,"minutes\nType 'c' to stop seeding now"
+        cancelseed = input("Transmission-remote will seed for {0} minutes\nType 'c' to stop seeding now: ".format(config.seedtime/60))
+        if cancelseed == 'c':
+            seedtime = 0
+        time.sleep(seedtime)
+        removetorrent = 'transmission-remote --auth {0}:{1} -t all -r'.format(config.transmission_login,transpass)
+        stdin,stdout,stderr = ssh.exec_command(removetorrent)
+        seedoutput = stdout.readlines()
+        print("{0}!".format(seedoutput[0][45:52]))
+        options()
 
     if option == "1":
         search = input("Search for torrent you're looking for: ")
@@ -77,49 +114,15 @@ def options():
                 x = x + 2
                 y = y + 2
             choice = int(input("Please choose a number: "))
-            print("Downloading",title[z-1])
+            print("Downloading",title[choice-1].text)
             return(magnetdict[choice])
-        magnet = searchtorent(search)
+        magnet = searchtorrent(search)
         autotorrent(magnet)
+
     if option == "2":
         magnet = input("Paste magnet link here: ")
-        def autotorrent(magnet):
-            #getting the torrent
-            torrent = "transmission-remote --auth {0}:{1} -a {2}".format(config.transmission_login,transpass,magnet)
-            torrent = str(torrent)
-            stdin,stdout,stderr = ssh.exec_command(torrent)
-            torrentoutput = stdout.readlines()
-            print("{0}!".format(torrentoutput[0][45:52]))
-
-            #checking if torrent is done
-            listtorrent = 'transmission-remote --auth {0}:{1} -l'.format(config.transmission_login,transpass)
-            stdin,stdout,stderr = ssh.exec_command(listtorrent)
-            status = stdout.readlines()
-            #checks if download is done every 30 seconds
-            starttime = time.time()
-            while True:
-                stdin,stdout,stderr = ssh.exec_command(listtorrent)
-                status = stdout.readlines()
-                status = status[1][7:10]
-                sys.stdout.write('\r Progress {0}%'.format(status))
-                if status == '100':
-                    print("\nDownload complete!")
-                    break
-                time.sleep(30.0 - ((time.time() -starttime) %30.0))
-
-            #deleting torrent file after seeding for configured minutes (default 10)
-            seedtime = config.seedtime
-            calculatedseedtime = "Transmission-remote will seed for",config.seedtime / 60,"minutes\nType 'c' to stop seeding now"
-            cancelseed = input("Transmission-remote will seed for {0} minutes\nType 'c' to stop seeding now: ".format(config.seedtime/60))
-            if cancelseed == 'c':
-                seedtime = 0
-            time.sleep(seedtime)
-            removetorrent = 'transmission-remote --auth {0}:{1} -t all -r'.format(config.transmission_login,transpass)
-            stdin,stdout,stderr = ssh.exec_command(removetorrent)
-            seedoutput = stdout.readlines()
-            print("{0}!".format(seedoutput[0][45:52]))
-            options()
         autotorrent()
+
     if option == '3':
         filelist = []
         stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
