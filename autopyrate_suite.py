@@ -4,12 +4,14 @@
 import os
 import sys
 import paramiko
+from bs4 import BeautifulSoup
+import requests
 import getpass
 import time
 import config #config file
 
 #splash text
-print("\nWelcome to autoPyrate v0.4\n---------------------")
+print("\nWelcome to autoPyrate v1.0\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")
@@ -35,18 +37,54 @@ if config.transmission_pass == False:
 else:
     transpass = password
 def options():
-    option = input("Choose what you would like to do\n 1. torrent | 2. transfer | 3. delete | 4. exit\n")
+    option = input("Choose what you would like to do\n 1. torrent search | 2. torrent | 3. transfer | 4. delete | 5. exit\n")
     #error prevention
-    if option not in ['1','2','3','4']:
+    if option not in ['1','2','3','4','5']:
         print("Please choose a valid number")
         options()
+
     if option == "1":
-        def autotorrent():
+        search = input("Search for torrent you're looking for: ")
+        url = config.url
+        search = requests.get("{0}{1}".format(url,search))
+        search = search.text
+        print("Searching from",url)
+        def searchtorrent(search):
+            '''
+            Displays searchresults from parameter and allows the user to select a torrent
+            to then return magnet link
+            '''
+            soup = BeautifulSoup(search,"html.parser")
+
+            title = soup.findAll("a",{"class":"detLink"})
+            seeders = soup.findAll("td",{"align": "right"})
+            magnet = soup.findAll("a",{"title": "Download this torrent using magnet"})
+
+            x = 0 #varables for going through seeders/leechers list
+            y = 2
+            m = 0 #varable for going throgh magnets
+            magnetdict = {} #for returning magnet link for repective link
+            z = 1 #iterable keys for magnetdict
+
+            for name in title:
+                magnetdict[z] = magnet[m].get('href')
+                sl = str(seeders[x:y])
+                sl = sl.replace('<td align="right">','')#removes excess
+                sl = sl.replace('</td>','')
+                print("{0}. {1} | {2}".format(z,name.text,sl))
+                z = z + 1
+                m = m + 1
+                x = x + 2
+                y = y + 2
+            choice = int(input("Please choose a number: "))
+            print("Downloading",title[z-1])
+            return(magnetdict[choice])
+        magnet = searchtorent(search)
+        autotorrent(magnet)
+    if option == "2":
+        magnet = input("Paste magnet link here: ")
+        def autotorrent(magnet):
             #getting the torrent
-            magnet = input("Paste magnet link here: ")
-            #if blank input
-            if magnet == "":
-                autotorrent()
             torrent = "transmission-remote --auth {0}:{1} -a {2}".format(config.transmission_login,transpass,magnet)
             torrent = str(torrent)
             stdin,stdout,stderr = ssh.exec_command(torrent)
@@ -82,7 +120,7 @@ def options():
             print("{0}!".format(seedoutput[0][45:52]))
             options()
         autotorrent()
-    if option == '2':
+    if option == '3':
         filelist = []
         stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
         files = stdout.readlines()
@@ -103,7 +141,7 @@ def options():
             options()
         autotransfer()
 
-    if option == '3':
+    if option == '4':
         filelist = []
         stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
         files = stdout.readlines()
@@ -122,6 +160,6 @@ def options():
             options()
         autodelete()
 
-    if option == '4':
+    if option == '5':
         ssh.close()
 options()
