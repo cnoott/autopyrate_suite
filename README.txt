@@ -4,7 +4,7 @@ Created by Liam Amadio
 
 See config.py for configurations to change the software to your needs
 
-autoPyrate is a script that allows the user to search, download, transfer, or delete torrents. Each of these atributes can be modified to the users needs via the config.py file that comes packaged. This program is not explicitly for piracy nor do I condone it.
+autoPyrate is a script that allows the user to search, download, transfer, or delete torrents on a remote server. Each of these atributes can be modified to the users needs via the config.py file that comes packaged. This program is not explicitly for piracy nor do I condone it.
 
 Dependencies:
 - python3
