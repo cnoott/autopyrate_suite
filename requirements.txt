@@ -1,0 +1,7 @@
+cryptography
+bcrypt
+pynacl
+paramiko
+beautifulsoup4
+requests
+
