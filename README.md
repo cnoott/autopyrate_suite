@@ -1,4 +1,5 @@
 The autoPyrate suite
+
 Created by Liam Amadio  
 ====================
 
@@ -20,10 +21,10 @@ autoPyrate is a script that allows the user to search, download, transfer, or de
 Dependencies:
 - python3
 - a server with transmission-daemon and transmission-cli installed
-    MODULES:
-        - paramiko
-        - beautifulsoup4
-        - requests
+Modules:
+- paramiko
+- beautifulsoup4
+- requests
 
 My server-side setup:
 raspberry pi 3
