@@ -2,7 +2,7 @@
 #Here you can change destination ip, login information, etc
 
 #destination IP address of server
-ip_addr = ''
+ip_addr = '173.224.111.159'
 #destination of torrented files from server
 source_dir = '/opt/plexmedia/movies/'
 #destination directory of downloded files (client)
