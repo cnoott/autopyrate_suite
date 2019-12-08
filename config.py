@@ -10,7 +10,7 @@ dest_dir = '~/Downloads'
 #default login for sever
 login = 'pi'
 
-#torrent website (thepiratebay is the only one that work at the moment, more to be added!)
+#torrent website (thepiratebay is the only one that works at the moment, more to be added) #this website is just to test
 url = 'https://thepiratebay.org/search/'
 #transmission torrent client config
 #default login

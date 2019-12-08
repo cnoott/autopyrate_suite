@@ -1,12 +1,8 @@
+(For version 1.0+)
 Desires
 -------
-1. Make to where the user can select if transmission password is the same as server password
-(Should it be an option in the config?[probably])
+1. Complete error prevention within the code.
 
 Goals for the future
 -------------------
-1. Create a search feature in which the user can search for a torrent from their favroite torrent websites
-    a. Find a python module that take a url as input and returns the HTML (beautiful soup + requests) CHECK
-    b. Use the given html output and be able to search the site and retreve magnet links from the search results
-        -For thepiratebay.org, simply use the url thepiratebay.org/search/'search'
-    c. Parse the html of the given url and display name and seeders/leechers. Store magnet url in variable
+1. add more torrent sites that the user could list from

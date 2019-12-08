@@ -129,6 +129,9 @@ def options():
         files = stdout.readlines()
         x = 1
         for i in files:
+            if str(i) == "Plex Versions":
+                x = x + 1
+                continue
             filelist.append(i)
             print("{0}. {1}".format(x,i))
             x = x + 1
@@ -150,6 +153,9 @@ def options():
         files = stdout.readlines()
         x = 1
         for i in files:
+            if i == "Plex Versions":
+                x = x + 1
+                continue
             filelist.append(i)
             print("{0}. {1}".format(x,i))
             x = x + 1
