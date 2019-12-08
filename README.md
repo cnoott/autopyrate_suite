@@ -17,10 +17,12 @@ autoPyrate is a script that allows the user to search, download, transfer, or de
 * Run the program 
 
     python3 autopyrate_suite.py
+===================
 
 Dependencies:
 - python3
 - a server with transmission-daemon and transmission-cli installed
+
 Modules:
 - paramiko
 - beautifulsoup4
