@@ -1,5 +1,5 @@
-The autoPyrate suite
-Created by Liam Amadio  
+<h1 align=center>The autoPyrate suitei</h1>
+<p align=center>Created by Liam Amadio</p>  
 ====================
 
 See config.py for configurations to change the software to your needs
