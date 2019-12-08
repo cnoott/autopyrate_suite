@@ -1,5 +1,4 @@
 The autoPyrate suite
-
 Created by Liam Amadio  
 ====================
 
@@ -17,6 +16,7 @@ autoPyrate is a script that allows the user to search, download, transfer, or de
 * Run the program 
 
     python3 autopyrate_suite.py
+
 ===================
 
 Dependencies:
