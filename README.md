@@ -1,6 +1,5 @@
-<h1 align=center>The autoPyrate suitei</h1>
+<h1 align=center>The autoPyrate suite</h1>
 <p align=center>Created by Liam Amadio</p>  
-====================
 
 See config.py for configurations to change the software to your needs
 
@@ -30,13 +29,13 @@ Modules:
 
 My server-side setup:
 raspberry pi 3
-    - running raspian
-    - port forwarded ssh
-    - transmission-daemon and transmission-cli for torrent client (also comes with a web interface)
-    - plex
+- running raspian
+- port forwarded ssh
+- transmission-daemon and transmission-cli for torrent client (also comes with a web interface)
+- plex
 
 
-Individual_funfunctions
+### Individual_functions
 1. autosearch()
     - Allows a user to search for a torrent.
     - Uses beautifulsoup4 + requests to parse the html page from the url variable provided in the config.py file.
