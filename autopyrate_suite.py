@@ -73,6 +73,7 @@ def options():
         cancelseed = input("Transmission-remote will seed for {0} minutes\nType 'c' to stop seeding now: ".format(config.seedtime/60))
         if cancelseed == 'c':
             seedtime = 0
+
         time.sleep(seedtime)
         removetorrent = 'transmission-remote --auth {0}:{1} -t all -r'.format(config.transmission_login,transpass)
         stdin,stdout,stderr = ssh.exec_command(removetorrent)

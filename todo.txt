@@ -6,3 +6,4 @@ Desires
 Goals for the future
 -------------------
 1. add more torrent sites that the user could list from
+2.
