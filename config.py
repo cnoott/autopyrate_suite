@@ -16,6 +16,7 @@ url = 'https://thepiratebay.org/search/'
 #default login
 transmission_login = "transmission"
 transmission_pass = True #set True if transmission password is the same as server login password
+transmission_password = '' #if previous option is set to False, enter transmission-client password here
 
 #seed time
 seedtime = 600

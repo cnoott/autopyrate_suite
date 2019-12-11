@@ -33,7 +33,7 @@ while True:
         print("Authentication failed")
 #checking config.py if transmission password is the same as server password
 if config.transmission_pass == False:
-    transpass = getpass.getpass(prompt="Enter transmission password: ")
+    transpass = config.transmission_password
 else:
     transpass = password
 def options():
