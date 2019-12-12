@@ -1,7 +1,12 @@
 (For version 1.0+)
-Desires
+Todo
 -------
-1. Complete error prevention within the code.
+1. Complete error prevention within the code. (pretty much done)
+2. Add PlexMedia media scan support
+    - include option for plex support in config
+    - login as plex
+    - execute command
+    - inlcude progress
 
 Goals for the future
 -------------------

@@ -17,6 +17,10 @@ url = 'https://thepiratebay.org/search/'
 transmission_login = "transmission"
 transmission_pass = True #set True if transmission password is the same as server login password
 transmission_password = '' #if previous option is set to False, enter transmission-client password here
-
 #seed time
 seedtime = 600
+
+#PlexMedia config
+plex_support = True #make false if you don't use plex on your server
+plex_user = 'plex'
+plex_pass = ''

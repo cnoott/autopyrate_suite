@@ -11,7 +11,7 @@ import time
 import config #config file
 
 #splash text
-print("\nWelcome to autoPyrate v1.1\n---------------------")
+print("\nWelcome to autoPyrate v1.3\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")
@@ -36,12 +36,27 @@ if config.transmission_pass == False:
     transpass = config.transmission_password
 else:
     transpass = password
+
+
+def plexscan():
+    '''
+    Scans configured torrent download directory to update for plex
+    '''
+    #plex user login
+    if config.plex_support == True:
+        plexssh = paramiko.SSHClient()
+        plexssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        plexssh.connect(hostname=config.ip_addr, username=config.plex_user,password=config.plex_pass)
+        stdin,stdout,stderr = plexssh.exec_command("/usr/lib/plexmediaserver/'Plex Media Scanner' --scan --refresh --force --item 29")
+        print("Updating Plex Movies library...")
+
 def options():
     option = input("Choose what you would like to do\n 1. torrent search | 2. torrent | 3. transfer | 4. delete | 5. exit\n")
     #error prevention
     if option not in ['1','2','3','4','5']:
         print("Please choose a valid number")
         options()
+
 #autotorrent function
     def autotorrent(magnet):
         #getting the torrent
@@ -82,7 +97,6 @@ def options():
         stdin,stdout,stderr = ssh.exec_command(removetorrent)
         seedoutput = stdout.readlines()
         print("{0}!".format(seedoutput[0][45:52]))
-        options()
 
     if option == "1":
         search = input("Search for torrent you're looking for: ")
@@ -126,13 +140,17 @@ def options():
                     print("Invalid option, please try again")
 
             return(magnetdict[choice])
+
         magnet = searchtorrent(search)
         autotorrent(magnet)
+        options()
+        plexscan()
 
     if option == "2":
         magnet = input("Paste magnet link here: ")
         autotorrent(magnet)
-
+        plexscan()
+        options()
     if option == '3':
         filelist = []
         stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
@@ -151,9 +169,9 @@ def options():
             print("Transfering",chosenfile)
             cmd = 'scp -r {0}@{1}:{2}{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
             os.system(cmd)
-            options()
         autotransfer()
-
+        plexscan()
+        options()
     if option == '4':
         filelist = []
         stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
@@ -170,8 +188,9 @@ def options():
                 autodelte()
             print("Deleting",filelist[choosefile - 1])
             stdin,stdout,stderr = ssh.exec_command("sudo rm -r /opt/plexmedia/movies/{0}".format(filelist[choosefile-1]))
-            options()
         autodelete()
+        plexscan()
+        options()
 
     if option == '5':
         ssh.close()
