@@ -1,4 +1,4 @@
-<h1 align=center>The autoPyrate suite</h1>
+<h1 align=center>The autoPyrate suite v1.3</h1>
 <p align=center>Created by Liam Amadio</p>  
 
 See config.py for configurations to change the software to your needs
@@ -32,7 +32,7 @@ raspberry pi 3
 - running raspian
 - port forwarded ssh
 - transmission-daemon and transmission-cli for torrent client (also comes with a web interface)
-- plex
+- Plex Media server
 
 
 ### Individual_functions
@@ -56,3 +56,5 @@ raspberry pi 3
    - Lists files in configured directory and numbers them for later refence
    - Takes number as input and deletes the respective file from the configured directory
 
+5. plexscan()
+   - Scans the plex media movies library for file changes
