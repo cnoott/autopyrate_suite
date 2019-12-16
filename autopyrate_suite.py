@@ -143,8 +143,8 @@ def options():
 
         magnet = searchtorrent(search)
         autotorrent(magnet)
-        options()
         plexscan()
+        options()
 
     if option == "2":
         magnet = input("Paste magnet link here: ")
