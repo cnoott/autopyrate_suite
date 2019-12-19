@@ -1,4 +1,4 @@
-<h1 align=center>The autoPyrate suite v1.3</h1>
+<h1 align=center>The autoPyrate suite v1.4</h1>
 <p align=center>Created by Liam Amadio</p>  
 
 See config.py for configurations to change the software to your needs
