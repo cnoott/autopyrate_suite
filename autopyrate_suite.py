@@ -11,7 +11,7 @@ import time
 import config #config file
 
 #splash text
-print("\nWelcome to autoPyrate v1.3\n---------------------")
+print("\nWelcome to autoPyrate v1.4\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")
