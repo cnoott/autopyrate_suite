@@ -5,11 +5,10 @@ Todo
 2. Add error prevention for parsing thepiratebay.org
     - If no list returns from parsing thepiratebay.org, add a message in which the user can try again and tell them that thepiratebay.org may be down
     - Maybe add a ping feature in which it checks if thepiratebay.org is down
-3. Add a feature in which the user can cancel if they type 'c'
 
 
 Goals for the future
 -------------------
 1. add more torrent sites that the user could list from
-2. Make a web interface using js 
+2. Make a web interface using
 3. Make an auto update feature
