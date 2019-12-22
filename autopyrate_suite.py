@@ -95,7 +95,7 @@ def autotorrent(magnet):
     seedoutput = stdout.readlines()
     print("{0}!".format(seedoutput[0][45:52]))
 
-def autotransfer(choosefile):
+def autotransfer(choosefile, x, filelist):
     '''
     Lists files in configured directory and transfers selected file via scp
     '''
@@ -107,13 +107,13 @@ def autotransfer(choosefile):
     cmd = 'scp -r {0}@{1}:{2}{3} {4}'.format(config.login,config.ip_addr,config.source_dir,chosenfile,config.dest_dir)
     os.system(cmd)
 
-def autodelete(choosefile):
+def autodelete(choosefile, x, filelist):
     '''
     Lists files in configured directory and deletes selected file
     '''
     if choosefile == "" or choosefile > x:
         print("Please choose valid number")
-        autodelte()
+        autodelete()
     print("Deleting",filelist[choosefile - 1])
     stdin,stdout,stderr = ssh.exec_command("sudo rm -r /opt/plexmedia/movies/{0}".format(filelist[choosefile-1]))
 
@@ -205,7 +205,8 @@ def options():
         if choosefile.lower() == 'c':
             print('Canceled')
             options()
-        autotransfer(int(choosefile))
+        choosefile = int(choosefile)
+        autotransfer(choosefile, x, filelist)
         plexscan()
         options()
 
@@ -222,7 +223,8 @@ def options():
         if choosefile.lower() == 'c':
             print('Canceled')
             options()
-        autodelete(int(choosefile))
+        choosefile = int(choosefile)
+        autodelete(choosefile, x, filelist)
         plexscan()
         options()
 

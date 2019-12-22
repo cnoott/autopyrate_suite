@@ -12,3 +12,4 @@ Goals for the future
 1. add more torrent sites that the user could list from
 2. Make a web interface using
 3. Make an auto update feature
+4. Use website liamamadio.tech/movies to redirect to local python server interface with browser
