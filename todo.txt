@@ -2,9 +2,7 @@
 Todo
 -------
 1. Complete error prevention within the code. (pretty much done)
-2. Add error prevention for parsing thepiratebay.org
-    - If no list returns from parsing thepiratebay.org, add a message in which the user can try again and tell them that thepiratebay.org may be down
-    - Maybe add a ping feature in which it checks if thepiratebay.org is down
+2. Only show 10 results and add a feature in which it shows more resutlts 
 
 
 Goals for the future

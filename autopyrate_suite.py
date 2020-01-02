@@ -37,20 +37,24 @@ def searchtorrent(search):
         sl = str(seeders[x:y])
         sl = sl.replace('<td align="right">','')#removes excess
         sl = sl.replace('</td>','')
-        print("{0}. {1} | {2}".format(z,name.text,sl))
-        z = z + 1
-        m = m + 1
-        x = x + 2
-        y = y + 2
+        while z <= 10:
+            print("{0}. {1} | {2}".format(z,name.text,sl))
+            z = z + 1
+            m = m + 1
+            x = x + 2
+            y = y + 2
     while True:
         try:
-            choice = int(input("Please choose a number: "))
-            print("Downloading",title[choice-1].text)
+            choice = input("Please choose a number (or type c to cancel): ")
+            if (choice) == 'c':
+                options()
+                break
+            print("Downloading",title[int(choice)-1].text)
             break
         except IndexError:
             print("Invalid option, please try again")
 
-    return(magnetdict[choice])
+    return(magnetdict[int(choice)])
 
 def autotorrent(magnet):
     '''
@@ -133,7 +137,7 @@ def plexscan():
 #END OF KEY FUNCTIONS
 
 #splash text
-print("\nWelcome to autoPyrate v1.4\n---------------------")
+print("\nWelcome to autoPyrate v1.5\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")

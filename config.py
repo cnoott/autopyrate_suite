@@ -4,7 +4,7 @@
 #destination IP address of server
 ip_addr = ''
 #destination of torrented files from server
-source_dir = '/opt/plexmedia/movies/'
+source_dir = '~/plexstorage'
 #destination directory of downloded files (client)
 dest_dir = '~/Downloads'
 #default login for sever
