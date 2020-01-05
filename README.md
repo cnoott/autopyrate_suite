@@ -1,4 +1,4 @@
-<h1 align=center>The autoPyrate suite v1.4</h1>
+<h1 align=center>The autoPyrate suite v1.6</h1>
 <p align=center>Created by Liam Amadio</p>  
 
 See config.py for configurations to change the software to your needs
@@ -61,3 +61,6 @@ raspberry pi 3
 
 5. plexscan()
    - Scans the plex media movies library for file changes
+
+6. changedirectory()
+   - Allows the user to choose a folder to download to/from within the configured root directory

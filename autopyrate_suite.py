@@ -37,12 +37,11 @@ def searchtorrent(search):
         sl = str(seeders[x:y])
         sl = sl.replace('<td align="right">','')#removes excess
         sl = sl.replace('</td>','')
-        while z <= 10:
-            print("{0}. {1} | {2}".format(z,name.text,sl))
-            z = z + 1
-            m = m + 1
-            x = x + 2
-            y = y + 2
+        print("{0}. {1} | {2}".format(z,name.text,sl))
+        z = z + 1
+        m = m + 1
+        x = x + 2
+        y = y + 2
     while True:
         try:
             choice = input("Please choose a number (or type c to cancel): ")
@@ -134,10 +133,25 @@ def plexscan():
         print("Updating Plex Movies library...")
         plexssh.close()
 
+def changedirectory():
+    '''
+    Changes the local variable source_dir pulled from config.py
+    '''
+    stdin,stdout,stderr = ssh.exec_command('ls {0}'.format(config.source_dir))
+    files = stdout.readlines()
+    x = 1
+    for filename in files:
+        print(x, filename)
+        x = x + 1
+    choice = int(input('Choose a folder to download to/from'))
+    chosen_dir = '{0}{1}'.format(config.source_dir,files[choice - 1])
+    stdin,stdout,stderr = ssh.exec_command('transmission-remote --auth={0}:{1} -w {2}'.format(config.transmission_login,transpass,chosen_dir))
+    return chosen_dir
+
 #END OF KEY FUNCTIONS
 
 #splash text
-print("\nWelcome to autoPyrate v1.5\n---------------------")
+print("\nWelcome to autoPyrate v1.6\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")
@@ -183,6 +197,7 @@ def options():
         search = search.text
         print("Searching from",url)
         magnet = searchtorrent(search)
+        changedirectory()
         autotorrent(magnet)
         plexscan()
         options()
@@ -192,13 +207,16 @@ def options():
         if magnet.lower() == 'c':
             print('Canceled')
             options()
+        changedirectory()
         autotorrent(magnet)
         plexscan()
         options()
 
     if option == "3":
         filelist = []
-        stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
+        chosen_dir = changedirectory()
+        stdin,stdout,stderr = ssh.exec_command("ls {0}".format(chosen_dir))
+        files = stdout.readlines()
         files = stdout.readlines()
         x = 1
         for i in files:
@@ -216,7 +234,8 @@ def options():
 
     if option == '4':
         filelist = []
-        stdin,stdout,stderr = ssh.exec_command("ls /opt/plexmedia/movies")
+        chosen_dir = changedirectory()
+        stdin,stdout,stderr = ssh.exec_command("ls {0}".format(chosen_dir))
         files = stdout.readlines()
         x = 1
         for i in files:

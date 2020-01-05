@@ -3,6 +3,7 @@ Todo
 -------
 1. Complete error prevention within the code. (pretty much done)
 2. Only show 10 results and add a feature in which it shows more resutlts 
+3. Add option to change download directory
 
 
 Goals for the future
@@ -11,3 +12,8 @@ Goals for the future
 2. Make a web interface using
 3. Make an auto update feature
 4. Use website liamamadio.tech/movies to redirect to local python server interface with browser
+
+BUG FIXES
+---------
+1. fix limitting the results to only 10
+2. more error prevention in fixing results
