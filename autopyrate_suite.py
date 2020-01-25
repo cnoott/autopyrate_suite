@@ -151,7 +151,17 @@ def changedirectory():
 #END OF KEY FUNCTIONS
 
 #splash text
-print("\nWelcome to autoPyrate v1.6\n---------------------")
+logo = '''
+      ____
+    ,'   Y`.
+   /        \
+
+   \ ()  () /
+    `. /\ ,'
+8====| "" |====8
+     `LLLU'
+'''
+print(logo,"\nWelcome to autoPyrate v1.6\n---------------------")
 #error prevention
 if config.ip_addr == "":
     print("No ip_addr provided in config file")

@@ -4,7 +4,7 @@
 #destination IP address of server
 ip_addr = ''
 #destination of where the media will be downloaded and stored. The function changedirectory() allows the user to change their desired folder within this directory
-source_dir = '~/plexstorage'
+source_dir = '~/plexstorage/'
 #destination directory of downloded files (client)
 dest_dir = '~/Downloads'
 #default login for sever
